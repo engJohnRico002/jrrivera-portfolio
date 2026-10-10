@@ -9,6 +9,15 @@ const imageMap = import.meta.glob('./images/*.{jpg,jpeg,png,webp,gif,JPG,JPEG,PN
 }) as Record<string, string>
 const img = (name: string) => imageMap[`./images/${name}`] ?? `/src/images/${name}`
 
+// Resume PDF: resolved through Vite if it lives in src/assets/, otherwise falls back
+// to the copy in the public/ folder (served from the site root).
+const pdfMap = import.meta.glob('./assets/*.pdf', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+}) as Record<string, string>
+const resumeUrl = pdfMap['./assets/John_Rico_Rivera_resume.pdf'] ?? '/John_Rico_Rivera_resume.pdf'
+
 const techGroups = [
   { title: 'Frontend', items: ['HTML', 'CSS', 'JavaScript', 'React (Vite)', 'Tailwind CSS'] },
   { title: 'Backend', items: ['Node.js', 'Firebase'] },
@@ -774,7 +783,7 @@ export default function App() {
             <div className="hero-role">Web Developer / IT Support</div>
             <div className="btn-row">
               <a
-                href="/John_Rico_Rivera_resume.pdf"
+                href={resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-outline"
