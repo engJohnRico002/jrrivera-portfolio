@@ -774,7 +774,7 @@ export default function App() {
             <div className="hero-role">Web Developer / IT Support</div>
             <div className="btn-row">
               <a
-                href="src/assets/John_Rico_Rivera_resume.pdf"
+                href="/John_Rico_Rivera_resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-outline"
