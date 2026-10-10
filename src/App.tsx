@@ -96,9 +96,18 @@ const socialLinks = [
 ]
 
 // Paste your Messenger link here (e.g. https://m.me/your.username)
-const messengerLink = 'https://m.me/john.rico.bisnan.rivera'
+const messengerLink = 'https://m.me/your.username'
 
-const gallerySlides = ['gal1', 'gal2', 'gal3', 'gal4', 'gal5', 'gal6']
+// Gallery photos: drop any images into src/images/gallery/ and they show up automatically
+// (sorted by filename).
+const galleryFiles = import.meta.glob('./images/gallery/*.{jpg,jpeg,png,webp,gif,JPG,JPEG,PNG,WEBP}', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+}) as Record<string, string>
+const gallerySlides = Object.keys(galleryFiles)
+  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+  .map((path) => galleryFiles[path])
 
 function Icon({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
@@ -1059,10 +1068,10 @@ export default function App() {
           </div>
           <div className="gallery-viewport">
             <div className="carousel-track">
-              {[...gallerySlides, ...gallerySlides].map((seed, index) => (
-                <div className="g-slide" key={`${seed}-${index}`} aria-hidden={index >= gallerySlides.length}>
+              {[...gallerySlides, ...gallerySlides].map((src, index) => (
+                <div className="g-slide" key={`${src}-${index}`} aria-hidden={index >= gallerySlides.length}>
                   <img
-                    src={`https://picsum.photos/seed/${seed}/280/360`}
+                    src={src}
                     alt={index < gallerySlides.length ? `Gallery item ${index + 1}` : ''}
                   />
                 </div>
