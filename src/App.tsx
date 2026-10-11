@@ -105,7 +105,7 @@ const socialLinks = [
 ]
 
 // Paste your Messenger link here (e.g. https://m.me/your.username)
-const messengerLink = 'https://m.me/your.username'
+const messengerLink = 'https://m.me/john.rico.bisnan.rivera'
 
 // Gallery photos: drop any images into src/images/gallery/ and they show up automatically
 // (sorted by filename).
